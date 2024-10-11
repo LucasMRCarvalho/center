@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --base-clr: #11121a;
+    --line-clr: #42434a;
+    --hover-clr: #222533;
+    --text-clr: #e6e6ef;
+    --accent-clr: #5e63ff;
+    --secondary-text-clr: #b0b3c1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+    line-height: 1.5rem;
+    list-style: none;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+#sidebar {
+    height: 100vh;
+    width: 250px;
+    padding: 5px 1em;
+    background-color: var(--base-clr);
+    border-right: 1px solid var(--line-clr);
+
+    position: sticky;
+    top: 0;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
+#sidebar.close {
+    padding: 5px;
+    width: 60px;
+}
+
+#sidebar ul {
+    list-style: none;
+}
+
+#sidebar > ul > li:first-child {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+    .logo {
+        font-weight: 600;
+    }
+}
+
+#sidebar ul li.active a {
+    color: var(--accent-clr);
+
+    svg {
+        fill: var(--accent-clr);
+    }
+}
+
+#sidebar a, #sidebar .dropdown-btn,
+#sidebar .logo {
+    border-radius: .5em;
+    padding: .85em;
+    text-decoration: none;
+    color: var(--text-clr);
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.dropdown-btn {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+#sidebar svg {
+    flex-shrink: 0;
+    fill: var(--text-clr);
+}
+
+#sidebar a span,
+#sidebar .dropdown-btn span {
+    flex-grow: 1;
+}
+
+#sidebar a:hover,
+#sidebar .dropdown-btn:hover {
+    background-color: var(--hover-clr);
+}
+
+#sidebar .sub-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: 300ms ease-in-out;
+
+    > div {
+        overflow: hidden;
+    }
+}
+
+#sidebar .sub-menu.show {
+    grid-template-rows: 1fr;
+}
+
+.dropdown-btn svg {
+    transition: 200ms ease;
+}
+
+.rotate svg:last-child {
+    rotate: 180deg;
+}
+
+#sidebar .sub-menu a {
+    padding-left: 2em;
+}
+
+#toggle-btn {
+    margin-left: auto;
+    padding: 1em;
+    border: none;
+    border-radius: .5em;
+    background: none;
+    cursor: pointer;
+
+    svg {
+        transition: rotate 150ms ease;
+    }
+}
+
+#toggle-btn:hover {
+    background-color: var(--hover-clr);
+}
+
+main {
+    padding: min(30px, 7%);
+}
+
+main p {
+    color: var(--secondary-text-clr);
+    margin: 5px 0 15px 0;
+}
+
+.container {
+    border: 1px solid var(--line-clr);
+    border-radius: 1em;
+    margin-bottom: 20px;
+    padding: min(3em, 15%);
+
+    h2, p {margin-top: 1em;}
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    padding: .85em;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    border-radius: .5em;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+}
+
+.logout:hover {
+    background-color: var(--hover-clr);
+}
+
+.logout svg {
+    fill: var(--text-clr);
+    flex-shrink: 0;
+}
+
+/* ===QUEBRAS DE LINHAS=== */
+.quebra {
+    display: flex;
+    flex-direction: column; /* Mantém a disposição vertical */
+    justify-content: center; /* Alinha o conteúdo verticalmente no centro */
+    align-items: center; /* Alinha o conteúdo horizontalmente no centro */
+    height: 100vh; /* Garante que o body ocupe a altura total da janela */
+    margin: 0;
+}
+
+.quebra .container {
+    text-align: center; /* Mantém o texto centralizado */
+    /* margin-top: 150px; */
+    /* margin-bottom: 100px; */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+.quebra button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--base-clr);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.quebra button:hover {
+    background-color: var(--hover-clr);
+}
+
+.quebra textarea {
+    width: 90%;
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(255,255,255,0.1);
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+}
+
+.quebra h1 {
+    font-size: 24px;
+    color: #fff;
+}
+
+.quebra label {
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+}
+
+.quebra select {
+    width: 150px;
+    box-shadow: 0 0 5px rgba(255,255,255,0.1);
+}
+
+.statistics {
+    display: flex;
+    flex-direction: column; /* Para alinhar as seções verticalmente */
+    align-items: center; /* Centraliza as seções horizontalmente */
+    justify-content: center;
+    background-color: var(--base-clr);
+    border: 1px solid var(--line-clr);
+    border-radius: 10px;
+    padding: 20px;
+    color: var(--text-clr);
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.stats-section {
+    width: 100%; /* Faz cada seção ocupar toda a largura disponível */
+    margin-bottom: 20px; /* Espaço entre as seções */
+    text-align: center; /* Centraliza o conteúdo dentro de cada seção */
+}
+
+.stats-section h3 {
+    color: var(--accent-clr);
+    margin-bottom: 5px; /* Espaço abaixo do título da seção */
+}
+
+.statistics ul {
+    list-style: none;
+    padding: 0;
+}
+
+.statistics ul li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.statistics strong {
+    color: var(--accent-clr);
+}
+
+
+.alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #d4edda; /* Cor de fundo verde claro */
+    color: #155724; /* Texto verde escuro */
+    border: 1px solid #c3e6cb; /* Borda verde */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 5px; /* Cantos arredondados */
+    margin: 0; /* Remover margens */
+    width: 50%; /* Largura do alerta */
+    max-width: 500px; /* Largura máxima */
+    z-index: 9999; /* Ficar acima de outros elementos */
+}
+
+.form-group {
+    margin-bottom: 1.5rem; /* Adiciona espaço entre os grupos de input */
+}
+
+label {
+    display: block; /* Garante que o label ocupe toda a linha */
+    margin-bottom: 0.5rem; /* Espaço entre o label e o input */
+    font-weight: bold; /* Aumenta a ênfase no texto do label */
+}
+
+.form-control {
+    border: none; /* Remove a borda padrão */
+    border-radius: 8px; /* Define o raio da borda para arredondar os cantos */
+    padding: 10px; /* Aumenta o espaçamento interno para conforto */
+    background-color: #f8f9fa; /* Cor de fundo clara para os inputs */
+    transition: all 0.3s ease; /* Transição suave para os efeitos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do input */
+}
+
+.form-control:focus {
+    outline: none; /* Remove o contorno padrão do input */
+    border: 2px solid #007bff; /* Cor da borda ao focar no input */
+    background-color: #ffffff; /* Muda a cor de fundo ao focar */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Adiciona uma sombra ao focar */
+}
+
+
+
+
+
+
+
+
+@media(max-width: 800px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+    main {
+        padding: 2em 1em 60px 1em;
+    }
+    .container {
+        border: none;
+        padding: 0;
+    }
+    #sidebar {
+        height: 60px;
+        width: 100%;
+        border-right: none;
+        border-top: 1px solid var(--line-clr);
+        padding: 0;
+        position: fixed;
+        top: unset;
+        bottom: 0;
+
+        > ul {
+            padding: 0;
+            display: grid;
+            grid-auto-columns: 60px;
+            grid-auto-flow: column;
+            align-items: center;
+            overflow-x: scroll;
+        }
+        ul li {
+            height: 100%;
+        }
+        ul a, li .dropdown-btn {
+            width: 60px;
+            height: 60px;
+            padding: 0;
+            border-radius: 0;
+            justify-content: center;
+        }
+
+        ul li span, ul li:first-child,
+        .dropdown-btn svg:first-child {
+            display: none;
+        }
+
+        ul li .sub-menu.show {
+            position: fixed;
+            bottom: 60px;
+            left: 0;
+            box-sizing: border-box;
+            height: 60px;
+            width: 100%;
+            background-color: var(--hover-clr);
+            border-top: 1px solid var(--line-clr);
+            display: flex;
+            justify-content: center;
+
+            > div {
+                overflow-x: auto;
+            }
+            li {
+                display: inline-flex;
+            }
+            a {
+                box-sizing: border-box;
+                padding: 1em;
+                width: auto;
+                justify-content: center;
+            }
+        }
+    }
+
+    .logout {
+        position: static;
+        margin: 0;
+        padding: 0;
+        width: 60px; /* Mesma largura dos outros ícones */
+        height: 60px; /* Mesma altura dos outros ícones */
+        justify-content: center; /* Centraliza o ícone */
+    }
+    
+    .logout span {
+        display: none; /* Esconde o texto no modo responsivo */
+    }
+
+    .logout svg {
+        width: 24px;
+        height: 24px; /* Tamanho do ícone para corresponder aos outros */
+    }
+
+    .quebra {
+        display: flex;
+        flex-direction: column; /* Mantém a disposição vertical */
+        justify-content: center; /* Alinha o conteúdo verticalmente no centro */
+        align-items: center; /* Alinha o conteúdo horizontalmente no centro */
+        height: auto; /* Mude de 100vh para auto */
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 1em; /* Adiciona um padding para não ficar muito apertado */
+    }
+    
+    .quebra .container {
+        text-align: center; /* Mantém o texto centralizado */
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        max-width: 600px;
+        width: 100%; /* Permite que a largura se ajuste */
+    }
+}
