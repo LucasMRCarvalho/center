@@ -95,60 +95,6 @@ function copiarResultado() {
 }
 //==============================================================================
 
-// Função para exibir alertas
-function showAlert(type, message) {
-    const alertDiv = document.createElement('div');
-    alertDiv.className = `alert ${type}`;
-    alertDiv.textContent = message;
-    document.body.prepend(alertDiv);
-
-    // Remover o alerta após 3 segundos
-    setTimeout(() => {
-        alertDiv.remove();
-    }, 3000);
-}
-
-// Verificar mensagens de sessão (definidas no PHP)
-const urlParams = new URLSearchParams(window.location.search);
-const successMessage = urlParams.get('success');
-const errorMessage = urlParams.get('error');
-
-if (successMessage) {
-    showAlert('success', successMessage);
-}
-
-if (errorMessage) {
-    showAlert('error', errorMessage);
-}
-
-
-// Função para carregar estatísticas do servidor
-async function loadStatistics() {
-    try {
-        const response = await fetch('http://172.21.1.81:5000/api/statistics'); 
-        if (!response.ok) {
-            throw new Error('Erro na rede: ' + response.statusText);
-        }
-        const stats = await response.json();
-
-        // Atualiza os elementos com as estatísticas
-        document.querySelector('.stats-section:nth-of-type(1) strong').textContent = stats.total_users;
-        document.querySelector('.stats-section:nth-of-type(2) strong:nth-of-type(1)').textContent = `R$${stats.total_revenue.toFixed(2)}`;
-        document.querySelector('.stats-section:nth-of-type(2) strong:nth-of-type(2)').textContent = `R$${stats.today_revenue.toFixed(2)}`;
-        document.querySelector('.stats-section:nth-of-type(3) strong:nth-of-type(1)').textContent = stats.total_accesses_sold;
-        document.querySelector('.stats-section:nth-of-type(3) strong:nth-of-type(2)').textContent = stats.today_accesses_sold;
-
-        // Atualiza a mensagem de vencimento
-        document.querySelector('p strong').textContent = stats.vencimento;
-    } catch (error) {
-        console.error('Erro ao carregar estatísticas:', error);
-    }
-}
-
-// Carrega as estatísticas ao carregar a página
-window.onload = loadStatistics;
-
-
 // Função para Inline
 
 // Função para filtrar a lista de DBs com base no serviço selecionado

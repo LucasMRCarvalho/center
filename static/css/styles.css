@@ -78,6 +78,29 @@ input:focus {
     outline: none;
 }
 
+.flashes {
+    list-style-type: none;
+    padding: 0;
+}
+
+.flashes li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.flashes li.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.flashes li.danger {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+
 @media (max-width: 600px) {
     .container {
         padding: 20px;

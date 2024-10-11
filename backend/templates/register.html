@@ -8,10 +8,22 @@
 </head>
 <body>
     <div class="container">
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+
         <h1>Registrar Novo Usuário</h1>
 
         <!-- Formulário de Registro -->
-        <form id="register-form" action="/register" method="POST">
+        <form id="register-form" action="{{ url_for('register') }}" method="POST">
             <label for="username">Novo Usuário</label>
             <input type="text" id="username" name="username" required>
             
@@ -20,6 +32,7 @@
             
             <button type="submit">Registrar</button>
         </form>
+        <a href="{{ url_for('dashboard') }}">Voltar para o Painel</a>
     </div>
     
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

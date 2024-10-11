@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const alertDanger = document.querySelector('.alert-danger');
-    const alertSuccess = document.querySelector('.alert-success');
+    // Notificações usando Toastr
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => {
+        const category = alert.classList.contains('alert-success') ? 'success' : 'error';
+        const message = alert.textContent.trim();
 
-    // Ocultar alertas de erro
-    if (alertDanger) {
-        setTimeout(() => {
-            alertDanger.style.display = 'none';
-        }, 5000); // 5 segundos
-    }
+        if (message) {
+            if (category === 'success') {
+                toastr.success(message);
+            } else {
+                toastr.error(message);
+            }
+        }
 
-    // Ocultar alertas de sucesso
-    if (alertSuccess) {
-        setTimeout(() => {
-            alertSuccess.style.display = 'none';
-        }, 5000); // 5 segundos
-    }
+        alert.remove(); // Remove a div do DOM após mostrar a notificação
+    });
 });
