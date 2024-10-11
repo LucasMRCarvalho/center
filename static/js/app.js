@@ -80,8 +80,8 @@ function substituirListaEmailSenha() {
     document.getElementById('textoResultado').value = resultado.trimEnd();
 }
 
-// Função para limpar os campos
-function limparCampos() {
+// Função para limpar os campos do Organizador de Logins
+function limparCamposLogins() {
     document.getElementById('listaDados').value = '';
     document.getElementById('textoResultado').value = '';
 }
@@ -114,8 +114,8 @@ function filtrarLista() {
     document.getElementById("textoResultado").value = resultado;
 }
 
-// Função para limpar todos os campos de resultado
-function limparCampos() {
+// Função para limpar os campos do Inline
+function limparCamposInline() {
     document.getElementById("textoResultado").value = ''; // Limpa o campo de resultado
 }
 
@@ -169,8 +169,8 @@ function copiarResultado() {
     alert("Resultado copiado!"); // Mensagem de confirmação
 }
 
-// Função para limpar os campos
-function limparCampos() {
+// Função para limpar os campos do Separador de Dados
+function limparCamposSeparador() {
     document.getElementById("textoLinks").value = ''; // Limpa o campo de entrada
     document.getElementById("textoResultado").value = ''; // Limpa o campo de saída
     document.getElementById("tipoDado").value = 'email'; // Reseta o tipo de dado para email
