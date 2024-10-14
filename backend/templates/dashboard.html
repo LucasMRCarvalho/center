@@ -90,7 +90,7 @@
     <main>
         <div class="container">
             <h2>Bem vindo: <span>lucas8813@gmail.com</span></h2>
-            <p>⚠️ SEU BOT VENCE EM <strong>!</strong> ⚠️</p>
+            <p>⚠️ <span class="vencimento"></span> ⚠️</p>
         </div>
         <div class="statistics">
             <h2>📘 Estatísticas:</h2>
@@ -99,7 +99,7 @@
             <div class="stats-section">
                 <h3>Usuários</h3>
                 <ul>
-                    <li>📊 Usuários: <strong></strong></li>
+                    <li>📊 Usuários: <strong class="total_users"></strong></li>
                 </ul>
             </div>
         </div>
@@ -107,8 +107,8 @@
             <div class="stats-section">
                 <h3>Receita</h3>
                 <ul>
-                    <li>📈 Receita total: <strong></strong></li>
-                    <li>💠 Receita de hoje: <strong></strong></li>
+                    <li>📈 Receita total: <strong class="receita_total"></strong></li>
+                    <li>💠 Receita de hoje: <strong class="receita_hoje"></strong></li>
                 </ul>
             </div>
         </div>
@@ -116,13 +116,42 @@
             <div class="stats-section">
                 <h3>Acessos Vendidos</h3>
                 <ul>
-                    <li>📺 Acessos vendidos: <strong></strong></li>
-                    <li>📲 Acessos vendidos hoje: <strong></strong></li>
+                    <li>📺 Acessos vendidos: <strong class="acessos_vendidos"></strong></li></li>
+                    <li>📲 Acessos vendidos hoje: <strong class="acessos_vendidos_hoje"></strong></li>
                 </ul>
             </div>
         </div>
     </main>
+    
 
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script>
+    async function fetchData() {
+    try {
+        const response = await fetch('https://cors-anywhere.herokuapp.com/https://testebot.squareweb.app/api/info');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        // Atualiza os elementos do DOM com os dados obtidos
+        document.querySelector('.vencimento').innerText = data.vencimento;
+        document.querySelector('.total_users').innerText = data.total_users;
+        document.querySelector('.receita_total').innerText = `R$ ${data.receita_total.toFixed(2)}`;
+        document.querySelector('.receita_hoje').innerText = `R$ ${data.receita_hoje.toFixed(2)}`;
+        document.querySelector('.acessos_vendidos').innerText = data.acessos_vendidos;
+        document.querySelector('.acessos_vendidos_hoje').innerText = data.acessos_vendidos_hoje;
+
+    } catch (error) {
+        console.error('Erro ao obter dados:', error);
+    }
+}
+
+// Chama a função para executar a requisição
+fetchData();
+
+</script>
+
+
 </body>
 </html>
