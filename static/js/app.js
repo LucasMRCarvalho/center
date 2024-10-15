@@ -110,22 +110,15 @@ function filtrarLista() {
         }
     });
 
+    // Verifica se algum resultado foi encontrado
+    if (resultado.trim() === '') {
+        resultado = 'Nenhum resultado encontrado.'; // Mensagem se não houver resultados
+    }
+
     // Exibe o resultado filtrado no campo "textoResultadoDb"
     document.getElementById("textoResultado").value = resultado;
 }
 
-// Função para limpar os campos do Inline
-function limparCamposInline() {
-    document.getElementById("textoResultado").value = ''; // Limpa o campo de resultado
-}
-
-// Função para copiar o resultado
-function copiarResultado() {
-    const resultado = document.getElementById("textoResultado");
-    resultado.select();
-    document.execCommand("copy");
-    alert("Resultado copiado!");
-}
 
 
 // Função para Separador de Dados
