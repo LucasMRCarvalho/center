@@ -402,6 +402,32 @@ label {
 }
 
 
+.container2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.qrcode img {
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+}
+
+.pix-info {
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    width: 250px; /* Ajuste a largura conforme necessário */
+    padding: 10px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+
 @media(max-width: 800px) {
     body {
         grid-template-columns: 1fr;

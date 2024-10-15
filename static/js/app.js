@@ -225,3 +225,14 @@ function copiarEmailResultado() {
     document.execCommand('copy');
     alert('Resultado copiado para a área de transferência!');
 }
+
+// Donate
+function copiarPixCode() {
+    // Seleciona o campo de entrada
+    const pixInput = document.getElementById('pixCode');
+    pixInput.select(); // Seleciona o texto
+    document.execCommand('copy'); // Copia o texto selecionado
+
+    // Exibe uma mensagem para o usuário
+    document.getElementById('mensagem').innerText = 'Código copiado para a área de transferência! Obrigado por apoiar';
+}

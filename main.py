@@ -160,5 +160,10 @@ def quebra():
 def gerador():
     return render_template('gerador.html')
 
+@app.route('/donate')
+@login_required
+def donate():
+    return render_template('donate.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
