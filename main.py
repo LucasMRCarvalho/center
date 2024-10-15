@@ -155,5 +155,10 @@ def orgdb():
 def quebra():
     return render_template('quebra.html')
 
+@app.route('/gerador')
+@login_required
+def gerador():
+    return render_template('gerador.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

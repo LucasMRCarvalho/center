@@ -143,14 +143,27 @@ function extrairDados() {
 
         // Verifica se há pelo menos 3 partes (URL, CPF/email, senha)
         if (partes.length >= 3) {
-            const dado = partes[1]; // Pode ser CPF ou email
-            const senha = partes[2]; // Senha
+            let dado = partes[1].trim(); // Pode ser CPF ou email
+            let senha = partes[2].trim(); // Senha
+
+            // Remove caracteres não numéricos do CPF
+            if (tipoDado === "cpf" && !dado.includes("@")) {
+                dado = dado.replace(/\D/g, ''); // Remove tudo que não é número
+            }
+
+            // Verifica se a senha tem mais de 12 caracteres
+            if (senha.length > 12) {
+                senha = senha.substring(0, 12); // Trunca a senha para os primeiros 12 caracteres
+            }
 
             // Filtra de acordo com a seleção do tipo de dado (email ou cpf)
             if (tipoDado === "email" && dado.includes("@")) {
                 resultadoSet.add(`${dado}:${senha}`); // Adiciona ao Set (evita duplicatas)
             } else if (tipoDado === "cpf" && !dado.includes("@")) {
-                resultadoSet.add(`${dado}:${senha}`); // Adiciona ao Set (evita duplicatas)
+                // Verifica se o CPF tem pelo menos 6 caracteres
+                if (dado.length >= 6) {
+                    resultadoSet.add(`${dado}:${senha}`); // Adiciona ao Set (evita duplicatas)
+                }
             }
         } else {
             resultadoSet.add("Formato inválido na linha: " + linha); // Mensagem de erro se o formato estiver incorreto
@@ -160,6 +173,10 @@ function extrairDados() {
     // Converte o Set de volta para string e exibe o resultado no campo de saída
     document.getElementById("textoResultado").value = Array.from(resultadoSet).join("\n");
 }
+
+
+
+
 
 // Função para copiar o resultado para a área de transferência
 function copiarResultado() {
@@ -176,3 +193,35 @@ function limparCamposSeparador() {
     document.getElementById("tipoDado").value = 'email'; // Reseta o tipo de dado para email
 }
 
+
+// GERADOR EMAIL
+
+function gerarExtensoes() {
+    const baseEmail = document.getElementById('textoNormal').value.trim();
+    const quantidade = parseInt(document.getElementById('quantidade').value);
+    const numeroInicial = parseInt(document.getElementById('numeroInicial').value);
+    const resultadoTextarea = document.getElementById('emailResultado');
+
+    if (!baseEmail || isNaN(quantidade) || quantidade <= 0 || isNaN(numeroInicial) || numeroInicial <= 0) {
+        alert('Por favor, insira um e-mail válido, uma quantidade maior que 0 e um número inicial maior que 0.');
+        return;
+    }
+
+    const [parte1, parte2] = baseEmail.split('@');
+    const emailsGerados = [];
+
+    for (let i = numeroInicial; i < numeroInicial + quantidade; i++) {
+        const emailGerado = `${parte1}${String(i).padStart(2, '0')}@${parte2}`;
+        emailsGerados.push(emailGerado);
+    }
+
+    resultadoTextarea.value = emailsGerados.join('\n');
+}
+
+function copiarEmailResultado() {
+    const resultadoTextarea = document.getElementById('emailResultado');
+    resultadoTextarea.select();
+    resultadoTextarea.setSelectionRange(0, 99999); // Para dispositivos móveis
+    document.execCommand('copy');
+    alert('Resultado copiado para a área de transferência!');
+}

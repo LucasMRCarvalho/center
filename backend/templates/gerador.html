@@ -32,10 +32,10 @@
                 <ul class="sub-menu">
                     <div>
                         <li><a href="{{ url_for('organizador') }}">Organizador Logins</a></li>
-                        <li class="active"><a href="{{ url_for('quebra') }}">Quebra de linhas</a></li>
+                        <li><a href="{{ url_for('quebra') }}">Quebra de linhas</a></li>
                         <li><a href="{{ url_for('inline') }}">Organizador DB</a></li>
                         <li><a href="{{ url_for('orgdb') }}">Separador de Dados</a></li>
-                        <li><a href="{{ url_for('gerador') }}">Gerador de Email</a></li>
+                        <li class="active"><a href="{{ url_for('gerador') }}">Gerador de Email</a></li>
                     </div>
                 </ul>
            </li>
@@ -78,24 +78,33 @@
 
     <main class="quebra">
         <div class="container">
-            <h2>Quebra de linhas automático</h2>
+            <h2>Gerador de extensão de e-mail</h2>
             <p>
-                Com essa ferramenta, você pode transformar seu texto normal em um formato com quebras de linha automáticas.
-                Escreva seu texto na caixa "Texto Normal" e clique no botão "Transformar Quebra de Linhas". 
-                O resultado será exibido na caixa abaixo, onde as quebras de linha são representadas por '\n'. 
-                Depois, basta copiar o texto formatado com o botão "Copiar Resultado".
+                Esta ferramenta permite criar rapidamente múltiplas variações de um e-mail base, utilizando uma numeração sequencial.
+                Basta inserir um e-mail inicial, definir a quantidade de extensões que deseja criar e escolher um número inicial para a sequência.
+                A ferramenta gera automaticamente os e-mails no formato desejado, como EXAMPLE+EXE01@GMAIL.COM, EXAMPLE+EXE02@GMAIL.COM, e assim por diante.
+                Isso é especialmente útil para quem precisa criar vários endereços de e-mail únicos de forma rápida e organizada.
+                Você também pode copiar todos os e-mails gerados com um único clique!
             </p>
         </div>
         <div class="container">
-        <label for="textoNormal">Texto Normal</label>
-        <textarea id="textoNormal"></textarea>
-        <br>
-        <button onclick="transformarQuebraDeLinha()">Transformar Quebra de Linhas</button>
-        <br>
-        <label for="textoResultado">Resultado</label>
-        <textarea id="textoResultado" readonly></textarea>
-        <br>
-        <button onclick="copiarResultado()">Copiar Resultado</button>
+            <label for="textoNormal">Coloque o E-mail abaixo</label>
+            <textarea id="textoNormal" placeholder="example+exe@gmail.com"></textarea>
+            <br>
+            <label for="quantidade">Quantidade de e-mails:</label>
+            <input class="box" type="number" id="quantidade" placeholder="10">
+            <br>
+            <label for="numeroInicial">Número inicial:</label>
+            <input class="box" type="number" id="numeroInicial" placeholder="1">
+            <br>
+            <br>
+            <button onclick="gerarExtensoes()">Gerar extensões</button>
+            <br>
+            <br>
+            <label for="emailResultado">Resultado</label>
+            <textarea id="emailResultado" readonly></textarea>
+            <br>
+            <button onclick="copiarEmailResultado()">Copiar Resultado</button>
         </div>
     </main>
 

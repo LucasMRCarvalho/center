@@ -387,8 +387,19 @@ label {
     background-color: var(--hover-clr);
 }
 
+.box {
+    width: 50px;
+}
 
+.box,
+#textoNormal {
+    text-align: center; /* Centraliza o texto do input e do placeholder */
+}
 
+#textoNormal::placeholder,
+.box::placeholder {
+    text-align: center; /* Centraliza o texto do placeholder */
+}
 
 
 @media(max-width: 800px) {
