@@ -59,19 +59,19 @@ def login():
         flash('Usuário ou senha incorretos!', 'danger')  # Mostra erro de login
         return redirect(url_for('index'))
 
-# Rota api bot
-@app.route('/api/info')
-def get_info():
-    vencimento = "SEU BOT ESTÁ VENCIDO!" if Admin.tempo_ate_o_vencimento() <= 0 else f'SEU BOT VENCE EM {Admin.tempo_ate_o_vencimento()} DIAS!'
-    info = {
-        "vencimento": vencimento,
-        "total_users": Admin.total_users(),
-        "receita_total": Admin.receita_total(),
-        "receita_hoje": Admin.receita_hoje(),
-        "acessos_vendidos": Admin.acessos_vendidos(),
-        "acessos_vendidos_hoje": Admin.acessos_vendidos_hoje()
-    }
-    return jsonify(info)
+# # Rota api bot
+# @app.route('/api/info')
+# def get_info():
+#     vencimento = "SEU BOT ESTÁ VENCIDO!" if Admin.tempo_ate_o_vencimento() <= 0 else f'SEU BOT VENCE EM {Admin.tempo_ate_o_vencimento()} DIAS!'
+#     info = {
+#         "vencimento": vencimento,
+#         "total_users": Admin.total_users(),
+#         "receita_total": Admin.receita_total(),
+#         "receita_hoje": Admin.receita_hoje(),
+#         "acessos_vendidos": Admin.acessos_vendidos(),
+#         "acessos_vendidos_hoje": Admin.acessos_vendidos_hoje()
+#     }
+#     return jsonify(info)
 
 # Rota para o dashboard
 @app.route('/dashboard')
